@@ -4,8 +4,8 @@ import HomeView from '../views/HomeView.vue'
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: '首页',
+    component: () => import('../layout')
   },
   {
     path: '/login',

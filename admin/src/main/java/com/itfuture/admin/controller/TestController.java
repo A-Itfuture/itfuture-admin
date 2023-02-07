@@ -6,6 +6,7 @@ import com.itfuture.admin.service.SysUserService;
 import com.itfuture.admin.util.JwtUtils;
 import com.itfuture.admin.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,8 @@ public class TestController {
     private SysUserService  sysUserService;
 
     @GetMapping("/user/list")
+    // @PreAuthorize("hasAnyAuthority('system:user:list')")//判断权限
+    @PreAuthorize("hasRole('ROLE_common')")//判断角色
     public R userList(@RequestHeader(required = false) String token){
         if(StringUtil.isNotEmpty(token)){
             Map<String, Object> resultMap = new HashMap<>();
